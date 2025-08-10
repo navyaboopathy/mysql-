@@ -1,0 +1,53 @@
+
+CREATE TABLE employees (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    department TEXT,
+    salary INTEGER,
+    joining_date TEXT
+);
+
+
+INSERT INTO employees (id, name, department, salary, joining_date) VALUES
+(1, 'Alice', 'HR', 40000, '2023-01-15'),
+(2, 'Bob', 'HR', 35000, '2023-02-10'),
+(3, 'Charlie', 'Finance', 50000, '2022-12-01'),
+(4, 'David', 'Finance', 60000, '2023-03-20'),
+(5, 'Eve', 'IT', 70000, '2023-01-05'),
+(6, 'Frank', 'IT', 75000, '2023-04-10'),
+(7, 'Grace', 'IT', NULL, '2023-02-15');
+
+
+SELECT department, SUM(salary) AS total_salary
+FROM employees
+GROUP BY department;
+
+
+SELECT department, AVG(salary) AS avg_salary
+FROM employees
+GROUP BY department;
+
+
+SELECT department, COUNT(*) AS employee_count
+FROM employees
+GROUP BY department;
+
+SELECT department, COUNT(salary) AS count_with_salary
+FROM employees
+GROUP BY department;
+
+SELECT department, COUNT(*) AS emp_count
+FROM employees
+GROUP BY department
+HAVING COUNT(*) > 2;
+
+SELECT department, MAX(salary) AS highest_salary
+FROM employees
+GROUP BY department;
+
+SELECT department, ROUND(AVG(salary), 2) AS rounded_avg_salary
+FROM employees
+GROUP BY department;
+
+SELECT COUNT(DISTINCT department) AS distinct_departments
+FROM employees;
